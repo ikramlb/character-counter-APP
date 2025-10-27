@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>charactere counter.com</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <img class="logo-image" src="image icone for projet.PNG" alt="icone not found">
+            <p class="logo-text">Character Counter</p>
+            <button class="btnToggle" >
+                <span id="sunIcon">☀️</span>
+                <span id="moonIcon" style="display:none;">🌙</span>
+            </button>
+        </header>
+        <main>
+            <h1 class="title">Analyze your text in real-time.</h1><br>
+            <textarea class="zone-de-saise"></textarea><br>
+            <form class="form-de-choisie">
+                <input type="checkbox" name="spaces" id="spaces">
+                <label for="spaces">Exclude Spaces</label>
+                <input  type="checkbox"  name="limite" id="limites">
+                <label for="limites">Set Character Limites</label>
+                <p class="reading-time">Approx. reading time: 0 min</p>
+
+            </form>
+        
+            <div class="cont">
+                <div class="card total-character">
+                    <p class="count">0</p>
+                    <span class="text">Total Characters</span>
+                </div>
+                <div class="card word-count">
+                    <p class="count">0</p>
+                    <span class="text">Word Count</span>
+                </div>
+                <div class="card sentens-count">
+                    <p class="count">0</p>
+                    <span class="text">Sentens Count</span>
+                </div>
+            </div>
+
+        
+            <h3 class="title2">Letter Density</h3><br>
+            <div class="letter-density"></div>
+
+            
+
+        </main>
+
+    </div>
+
+
+   <script src="main.js"></script>
+</body>
+</html>
