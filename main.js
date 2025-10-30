@@ -1,18 +1,18 @@
-const btnToggle = document.querySelector('.btnToggle');
-const textarea = document.querySelector('.zone-de-saise');
-const totalChars = document.querySelector('.total-character .count');
-const wordCount = document.querySelector('.word-count .count');
-const sentenceCount = document.querySelector('.sentens-count .count');
-const readingTime = document.querySelector('.reading-time');
-const excludeSpacesCheckbox = document.getElementById('spaces');
-const limitCheckbox = document.getElementById('limites');
-const letterDensityDiv = document.querySelector('.letter-density');
+let btnToggle = document.querySelector('.btnToggle');
+let textarea = document.querySelector('.zone-de-saise');
+let totalChars = document.querySelector('.total-character .count');
+let wordCount = document.querySelector('.word-count .count');
+let sentenceCount = document.querySelector('.sentens-count .count');
+let readingTime = document.querySelector('.reading-time');
+let excludeSpacesCheckbox = document.querySelector('#spaces');
+let limitCheckbox = document.querySelector('#limites');
+let letterDensityDiv = document.querySelector('.letter-density');
 
 let maxChars = null;
 btnToggle.addEventListener('click', () => {
-  const body = document.body;
-  const sunIcon = document.getElementById("sunIcon");
-  const moonIcon = document.getElementById("moonIcon");
+  let body = document.body;
+  let sunIcon = document.querySelector("#sunIcon");
+  let moonIcon = document.querySelector("#moonIcon");
 
   body.classList.toggle("darkmood");
   sunIcon.style.display = body.classList.contains("darkmood") ? "none" : "inline";
@@ -22,7 +22,7 @@ textarea.addEventListener('input', updateCounts);
 excludeSpacesCheckbox.addEventListener('change', updateCounts);
 limitCheckbox.addEventListener('change', () => {
   if (limitCheckbox.checked) {
-    const userLimit = prompt("Enter the maximum number of characters:");
+    let userLimit = prompt("Enter the maximum number of characters:");
     if (userLimit && !isNaN(userLimit) && userLimit > 0) {
       maxChars = parseInt(userLimit);
       alert(`Character limit set to ${maxChars} characters`);
@@ -53,14 +53,14 @@ function updateCounts() {
       textarea.style.boxShadow = "none";
     }
   }
-  const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-  const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+  let words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+  let sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
   wordCount.textContent = words;
   sentenceCount.textContent = sentences;
 
-  const minutes = words / 200;
-  const seconds = Math.round((minutes * 60) % 60);
-  const roundedMinutes = Math.floor(minutes);
+  let minutes = words / 200;
+  let seconds = Math.round((minutes * 60) % 60);
+  let roundedMinutes = Math.floor(minutes);
 
   if (words === 0) {
     readingTime.textContent = "Approx. reading time: 0 min";
@@ -72,8 +72,8 @@ function updateCounts() {
   updateLetterDensity(text);
 }
 function updateLetterDensity(text) {
-  const letters = text.replace(/[^a-zA-Z]/g, '').toLowerCase();
-  const counts = {};
+  let letters = text.replace(/[^a-zA-Z]/g, '').toLowerCase();
+  let counts = {};
 
   for (let char of letters) {
     counts[char] = (counts[char] || 0) + 1;
@@ -86,24 +86,24 @@ function updateLetterDensity(text) {
     return;
   }
 
-  const totalLetters = letters.length;
-  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  let totalLetters = letters.length;
+  let sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
 
   sorted.forEach(([char, count]) => {
-    const percent = ((count / totalLetters) * 100).toFixed(2);
-    const barContainer = document.createElement('div');
+    let percent = ((count / totalLetters) * 100).toFixed(2);
+    let barContainer = document.createElement('div');
     barContainer.classList.add('letter-bar');
 
-    const label = document.createElement('span');
+    let label = document.createElement('span');
     label.classList.add('letter-label');
     label.textContent = `${char.toUpperCase()} (${percent}%)`;
 
-    const bar = document.createElement('div');
+    let bar = document.createElement('div');
     bar.classList.add('bar');
     bar.style.width = `${percent}%`;
 
-    barContainer.appendChild(label);
-    barContainer.appendChild(bar);
-    letterDensityDiv.appendChild(barContainer);
+    barContainer.append(label);
+    barContainer.append(bar);
+    letterDensityDiv.append(barContainer);
   });
 }
